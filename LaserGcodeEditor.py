@@ -38,7 +38,8 @@ def AddHeader(fileName):
     f = open(fileName, 'r')
     filedata = f.read()
     f.close()
-    f = open(fileName.split('.')[0]+".gcode", 'w')
+
+    f = open(fileName.replace(".nc", ".gcode"), 'w')
     f.write(";Header Start"+header+";Header End\n"+filedata)
     f.close()
 
@@ -54,5 +55,5 @@ if __name__ == "__main__":
     fileName = FindFile()
     ReadConfig("config.txt")
     AddHeader(fileName)
-    ReplaceWords(fileName.split('.')[0]+".gcode")
+    ReplaceWords(fileName.replace(".nc", ".gcode"))
     msgbox("Gcode Is Generated", "Success!")
